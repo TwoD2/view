@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persistent Views</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <button id="clickable-button">Click Me</button>
+    <p id="view-counter">Views: 0</p>
+  </div>
+  <script>
+    // Retrieve the view count from localStorage (or initialize to 0 if not found)
+let viewCount = parseInt(localStorage.getItem("viewCount")) || 0;
+
+// Update the display on page load
+const counter = document.getElementById("view-counter");
+counter.textContent = `Views: ${viewCount}`;
+
+// Increment the count when the button is clicked
+const button = document.getElementById("clickable-button");
+button.addEventListener("click", () => {
+  viewCount++;
+  localStorage.setItem("viewCount", viewCount); // Save to localStorage
+  counter.textContent = `Views: ${viewCount}`;
+});
+
+  </script>
+</body>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.container {
+  display: inline-block;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#view-counter {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+</style>
+</html>
